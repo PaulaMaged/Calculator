@@ -1,0 +1,41 @@
+Cases to think over:
+
+user enters: 5 x 5 =
+
+'=' causes expression to be evaluated and outputs to display.
+
+5 x 5 x <--
+
+top requires that only two operands evaluated at a time (this allows for removing complexity of order of operations), 
+I could have it so when an operand, operator operand are placed, they are instantly evaluated
+
+5 x - 5 
+
+this case, I am indicating I am desiring to use a negative number
+negative sign is a unary operand in this case
+
+- 5 x - 5 
+
+this is allowed
+
+- 5 x - 5 /
+
+this should evaluate instantly the expression and returning sum with new operator --> 25 / 
+
+how to distinguish unary operator - from binary operator operator -
+
+5 - 5 
+
+is this 5(-5) or 5 - 5 
+
+should be 5 - 5. 
+
+5 =
+
+can single operand be placed and evaluated?
+Not in this implementation. Google did implemented tho.
+
+5 x /
+
+/ should replace the operator before it -> x (assuming that the user wants to change the operator).
+

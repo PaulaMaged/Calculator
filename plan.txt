@@ -1,0 +1,12 @@
+initlialize variables for 
+    first operand
+    operator
+    second operand
+
+create display method to display content (takes value to display)
+
+create operate method to execute expression (takes 2 operands and one operator)
+
+    returns answer to be displayed
+
+create eventlisteners on buttons that call display method and appends to expression variable 

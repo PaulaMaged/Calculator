@@ -1,0 +1,90 @@
+INITIALIZE [] expression
+INITIALIZE $unaryNegative
+
+FUNCTION display()
+
+    turn expression into string and display it
+
+END
+
+FUNCTION updateExpression(objectPressed) (on button click)
+    $buttonContent = objectPressed.content
+
+    IF(buttonContent IS equalSign) 
+        CALL operate()
+
+    ELSE IF(buttonContent IS operand) 
+        CALL dealWithOperand()
+
+    ELSE IF(buttonContent IS operator) 
+        CALL dealWithOperator()
+
+    CALL display()
+
+END
+
+FUNCTION dealWithOperand(operand) {
+    
+    IF ($unaryNegative) 
+        COMBINE with operand
+        UNFLAG $unaryNegative
+        return
+
+    APPEND operand
+}
+
+FUNCTION dealWithOperator($operator) {
+    IF ($operator IS negativeSign) CALL dealWithUnaryNegativeOperator(operator)
+
+    IF($unaryNegative)
+        RETURN 
+
+    IF $expression length IS 3 
+        operate() 
+
+    IF(operator precedes $operator)
+        RETURN
+
+    append operator
+
+}
+
+FUNCTION dealWithUnaryNegativeOperator($operator) {
+
+    append $operator
+
+    IF negative IS only element in expression
+        FLAG $unaryNegative
+        RETURN
+
+    IF negative IS after operator 
+        FLAG $unaryNegative
+        RETURN
+
+    remove $operator
+}
+
+Function operate()
+
+    IF($expression length IS NOT 3)
+        RETURN
+
+    DECLARE operand1
+    DECLARE operand2
+    DECLARE operator
+
+    REMOVE from expression and INITIALIZE variables
+
+    $result;
+    SWITCH(operator inside expression)
+        divide: $result = CALL divide(operands)
+        multiply:  $result = CALL multiply(operands)
+        subtract:  $result = CALL subtract(operands)
+        add:  $result = CALL add(operands)
+        default: RETURN ERROR 'unknown operator'
+        
+    APPEND $result
+END 
+
+NOTES:
+
